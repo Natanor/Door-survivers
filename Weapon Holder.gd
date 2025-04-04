@@ -1,12 +1,8 @@
-extends Node2D
+extends Node
+func _addWeapon(weapon: Weapon):
+	self.add_child(weapon)
 
-@export var doors = Array([], TYPE_OBJECT, "Node", null)
-@export var doorLimit : int = 0
-
-func _addDoor(door):
-	if doors.has(door) :
-		#upgrade door level
-		pass
-	else:
-		if doors.size() < doorLimit :
-			doors[doors.size() - 1] = door;
+func _physics_process(delta: float) -> void:
+	#print(weapons)
+	for weapon: Weapon in get_children():
+		weapon.trigger(delta)

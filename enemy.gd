@@ -10,12 +10,15 @@ extends Node2D
 
 var damage_cooldown = 0
 
+# Initialization
+@onready var gameManager : GameManager = get_node('/root/Main/GameManager')
 const my_scene: PackedScene = preload("res://enemy.tscn")
+
 
 func _process(delta):
 	var velocity = (player.position - position).normalized()
-	self.take_damage(1)
-	
+	rotation = velocity.angle()
+
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 
@@ -25,12 +28,13 @@ func _process(delta):
 		$AnimatedSprite2D.stop()
 
 func take_damage(amount):
+	print("OUCH")
 	health -= amount
 	if health < amount:
 		self.die()
 
 func die():
-	get_tree().root.get_child(0).add_child(XPCrystal.drop_XP(self.player, xp, self.position))
+	gameManager.drop_xp(XPCrystal.drop_XP(self.player, xp, self.position))
 	self.queue_free()
 	
 func hit_by_player():

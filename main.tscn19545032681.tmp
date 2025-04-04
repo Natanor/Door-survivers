@@ -41,3 +41,5 @@ script = ExtResource("6_272bh")
 
 [node name="Weapon Holder" type="Node" parent="GameManager"]
 script = ExtResource("3_h2yge")
+doors = [null, null, null, null]
+doorLimit = 4

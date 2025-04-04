@@ -2,10 +2,12 @@ class_name XPCrystal
 extends Node2D
 
 var velocity = Vector2(0, 0)
-var player: Player = null
 var xp = 10
 @export var dampening = 0.9
 
+# Initialization
+@onready var gameManager : GameManager = get_node('/root/Main/GameManager')
+@onready var player : Player = gameManager.get_player()
 const my_scene: PackedScene = preload("res://XP crystal.tscn")
 
 func _process(delta):

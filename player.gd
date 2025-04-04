@@ -12,9 +12,14 @@ extends Node2D
 @export var max_xp_pull_distance = 125
 @export var xp_pull_strength = 100000
 
+# Initialization
+@onready var gameManager : GameManager = get_node('/root/Main/GameManager')
 
 func _process(delta):
 	var velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		gameManager.add_bullet(Bullet.new())
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
