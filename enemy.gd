@@ -6,6 +6,9 @@ extends Node2D
 @export var damage = 10
 @export var xp = 10
 @export var player: Node2D
+@export var DAMAGE_COOLDOWN_SECONDS = 0.5
+
+var damage_cooldown = 0
 
 const my_scene: PackedScene = preload("res://enemy.tscn")
 
@@ -30,8 +33,14 @@ func die():
 	get_tree().root.get_child(0).add_child(XPCrystal.drop_XP(self.player, xp, self.position))
 	self.queue_free()
 	
-func hit():
-	pass
+func hit_by_player():
+	if( damage_cooldown <= 0):
+		player.take_damage(damage)
+		damage_cooldown = DAMAGE_COOLDOWN_SECONDS * 60
+	
+func _physics_process(delta: float) -> void:
+	if damage_cooldown > 0:
+		damage_cooldown -= 1
 	
 static func new_enemy(player: Player, speed := 50.0, health := 100, xp := 10) -> Enemy:
 	var new_enemy: Enemy = my_scene.instantiate()

@@ -3,6 +3,8 @@ extends Node2D
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
+var xp = 0
+var health = 100
 func _ready():
 	screen_size = get_viewport_rect().size
 
@@ -12,7 +14,6 @@ func _process(delta):
 	if Input.is_action_pressed("ui_up"):
 		get_tree().root.get_child(0).add_child(Enemy.new_enemy(self, 100, 100))
 	
-	prints(velocity)
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 
@@ -21,7 +22,15 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.stop()
 
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.get_parent().has_method("hit_by_player"):
-		area.get_parent().hit_by_player(self);
+func get_xp(amount: int):
+	xp += amount
+	# print(xp)
+	
+func take_damage(amount: int):
+	health -= amount
+	print(health)
+	
+func _physics_process(delta: float) -> void:
+	for area : Area2D in $Area2D.get_overlapping_areas():
+		if area.get_parent().has_method("hit_by_player"):
+			area.get_parent().hit_by_player();

@@ -18,12 +18,13 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.stop()
 		
-func hit_by_player(player: Player):
+func hit_by_player():
+	player.get_xp(self.xp)
 	self.queue_free()
 
 static func drop_XP(player: Player, amount: int, position: Vector2) -> XPCrystal:
-	var xp: XPCrystal = my_scene.instantiate()
-	xp.player = player
-	xp.xp = amount
-	xp.position = position
-	return xp
+	var xp_instance: XPCrystal = my_scene.instantiate()
+	xp_instance.player = player
+	xp_instance.xp = amount
+	xp_instance.position = position
+	return xp_instance

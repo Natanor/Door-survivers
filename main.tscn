@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bp3bhe2kx3roa"]
+[gd_scene load_steps=8 format=3 uid="uid://bp3bhe2kx3roa"]
 
 [ext_resource type="PackedScene" uid="uid://4lhq6jwnxvw1" path="res://player.tscn" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://drgyodt617ymr" path="res://Weapon Holder.gd" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://dqn6okd3yvspt" path="res://enemy.tscn" id="4_1bvp3"]
-[ext_resource type="Script" uid="uid://vuj7bxf3dior" path="res://door.gd" id="5_lquwl"]
+[ext_resource type="Script" path="res://Weapon Holder.gd" id="3_h2yge"]
+[ext_resource type="Script" path="res://door.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cotxnpd3nnoq1" path="res://bullet.tscn" id="6_7mycd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
@@ -26,10 +25,10 @@ animations = [{
 
 [node name="Player" parent="." instance=ExtResource("1_0xm2m")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_1bvp3")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D2" type="Camera2D" parent="Player"]
 
 [node name="Weapon Holder" type="Node2D" parent="Player"]
 script = ExtResource("3_h2yge")
