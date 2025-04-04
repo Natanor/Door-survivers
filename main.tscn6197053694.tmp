@@ -41,7 +41,4 @@ region_rect = Rect2(-73068.2, -33350.4, 112152, 56173.1)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
 position = Vector2(100, 0)
-speed = 100
-health = 100
-damage = 10
 player = NodePath("../Player")

@@ -21,8 +21,9 @@ animations = [{
 
 [node name="Main" type="Node2D"]
 
-[node name="Player" type="Node2D" parent="."]
+[node name="Player" type="Node2D" parent="." node_paths=PackedStringArray("ENEMY")]
 script = ExtResource("1_ig7tw")
+ENEMY = NodePath("../Enemy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_1bvp3")
@@ -39,9 +40,5 @@ texture = ExtResource("2_0xm2m")
 region_enabled = true
 region_rect = Rect2(-73068.2, -33350.4, 112152, 56173.1)
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
+[node name="Enemy" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(100, 0)
-speed = 100
-health = 100
-damage = 10
-player = NodePath("../Player")

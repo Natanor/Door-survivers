@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqn6okd3yvspt"]
+
+[ext_resource type="Script" uid="uid://cyj5ia7k3yg28" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_qi2p4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lquwl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qi2p4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_4gyqm")
+speed = null
+health = null
+damage = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lquwl")
