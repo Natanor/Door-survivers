@@ -1,19 +1,21 @@
 class_name XPCrystal
 extends Node2D
 
-var acceleration = 100
 var velocity = Vector2(0, 0)
 var player: Player = null
 var xp = 10
+@export var dampening = 0.9
 
 const my_scene: PackedScene = preload("res://XP crystal.tscn")
 
 func _process(delta):
 	var distance = (player.position - position).length()
-	velocity += (player.position - position).normalized() * (acceleration / log(distance))
+	if (distance < player.max_xp_pull_distance):
+		velocity += (player.position - position).normalized() * (player.xp_pull_strength / distance**2)
 		
 	if velocity.length() > 0:
 		position += velocity * delta
+		velocity *= dampening
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()

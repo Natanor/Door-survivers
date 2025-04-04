@@ -1,9 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bp3bhe2kx3roa"]
 
-[ext_resource type="PackedScene" path="res://player.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://4lhq6jwnxvw1" path="res://player.tscn" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_0xm2m"]
-
-[ext_resource type="Script" uid="uid://drgyodt617ymr" path="res://Weapon Holder.gd" id="3_h2yge"]
+[ext_resource type="Script" path="res://Weapon Holder.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://vuj7bxf3dior" path="res://door.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cotxnpd3nnoq1" path="res://bullet.tscn" id="6_7mycd"]
 
@@ -31,14 +30,14 @@ sprite_frames = SubResource("SpriteFrames_1bvp3")
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 
-[node name="Weapon Holder" type="Node2D" parent="Player"]
+[node name="Weapon Holder2" type="Node2D" parent="Player"]
 script = ExtResource("3_h2yge")
 doors = [null, null, null, null]
 doorLimit = 4
 
-[node name="Bullet Holder" type="Node2D" parent="Player"]
+[node name="Bullet Holder2" type="Node2D" parent="Player"]
 
-[node name="Bullet" parent="Player/Bullet Holder" instance=ExtResource("6_7mycd")]
+[node name="Bullet" parent="Player/Bullet Holder2" instance=ExtResource("6_7mycd")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

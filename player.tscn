@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://4lhq6jwnxvw1"]
+[gd_scene load_steps=9 format=3 uid="uid://4lhq6jwnxvw1"]
 
 [ext_resource type="Script" uid="uid://boxaw52pv20nv" path="res://player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_hqtel"]
 [ext_resource type="Script" path="res://Weapon Holder.gd" id="3_sweqy"]
 [ext_resource type="Script" uid="uid://c1fwxs74rnpmj" path="res://enemy_spawner.gd" id="4_hqtel"]
+[ext_resource type="PackedScene" uid="uid://cotxnpd3nnoq1" path="res://bullet.tscn" id="5_sweqy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
 atlas = ExtResource("2_hqtel")
@@ -44,5 +45,14 @@ shape = SubResource("RectangleShape2D_i3pqv")
 
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource("4_hqtel")
+
+[node name="Weapon Holder" type="Node2D" parent="."]
+script = ExtResource("3_sweqy")
+doors = [null, null, null, null]
+doorLimit = 4
+
+[node name="Bullet Holder" type="Node2D" parent="."]
+
+[node name="Bullet" parent="Bullet Holder" instance=ExtResource("5_sweqy")]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

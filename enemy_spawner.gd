@@ -1,13 +1,19 @@
 extends Node2D
 
-var player = self.get_parent()
+@export var spawn_distance = 500
+
+@onready var player: Player = self.get_parent()
 var time_since_start = 0
 
 
 func spawn_enemy():
-	Enemy.new_enemy(player, 50, 100, 10)
+	var position = player.position + Vector2.DOWN.rotated(randf_range(-1 * PI, PI)) * spawn_distance
+	
+	var enemyToSpawn = Enemy.new_enemy(player, position, EnemyType.NORMAL)
+	get_node('/root/Main/EnemyHolder').add_child(enemyToSpawn)
 
 func _physics_process(delta: float) -> void:
-	for area : Area2D in $Area2D.get_overlapping_areas():
-		if area.get_parent().has_method("hit_by_player"):
-			area.get_parent().hit_by_player();
+	if time_since_start % 60 == 10:
+		self.spawn_enemy()
+	
+	time_since_start +=1

@@ -42,10 +42,13 @@ func _physics_process(delta: float) -> void:
 	if damage_cooldown > 0:
 		damage_cooldown -= 1
 	
-static func new_enemy(player: Player, speed := 50.0, health := 100, xp := 10) -> Enemy:
+static func new_enemy(player: Player, position: Vector2, enemyType: int) -> Enemy:
 	var new_enemy: Enemy = my_scene.instantiate()
-	new_enemy.health = health
-	new_enemy.speed = speed
 	new_enemy.player = player
-	new_enemy.xp = xp
+	new_enemy.position = position
+
+	var params = EnemyType.getEnemyInfo(enemyType)
+	new_enemy.health = params.health
+	new_enemy.speed = params.speed
+	new_enemy.xp = params.xp
 	return new_enemy
