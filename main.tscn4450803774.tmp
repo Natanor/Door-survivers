@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bp3bhe2kx3roa"]
+[gd_scene load_steps=7 format=3 uid="uid://bp3bhe2kx3roa"]
 
-[ext_resource type="Script" uid="uid://boxaw52pv20nv" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cfag37j8bc0lg" path="res://player.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://dqn6okd3yvspt" path="res://enemy.tscn" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://drgyodt617ymr" path="res://Weapon Holder.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://cyj5ia7k3yg28" path="res://enemy.gd" id="3_h2yge"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
 atlas = ExtResource("2_0xm2m")
@@ -20,6 +19,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_lquwl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0xm2m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Main" type="Node2D"]
 
 [node name="Player" type="Node2D" parent="."]
@@ -29,11 +39,6 @@ script = ExtResource("1_ig7tw")
 sprite_frames = SubResource("SpriteFrames_1bvp3")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-
-[node name="Node2D" type="Node2D" parent="Player"]
-script = ExtResource("3_h2yge")
-doors = [null, null, null, null]
-doorLimit = 4
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -45,9 +50,9 @@ texture = ExtResource("2_0xm2m")
 region_enabled = true
 region_rect = Rect2(-73068.2, -33350.4, 112152, 56173.1)
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
-position = Vector2(100, 0)
-speed = 100
-health = 100
-damage = 10
-player = NodePath("../Player")
+[node name="Enemy" type="Node2D" parent="."]
+script = ExtResource("3_h2yge")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
+position = Vector2(411, 202)
+sprite_frames = SubResource("SpriteFrames_lquwl")

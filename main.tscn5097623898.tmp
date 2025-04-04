@@ -1,9 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bp3bhe2kx3roa"]
 
-[ext_resource type="Script" uid="uid://boxaw52pv20nv" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cfag37j8bc0lg" path="res://player.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dqn6okd3yvspt" path="res://enemy.tscn" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://drgyodt617ymr" path="res://Weapon Holder.gd" id="3_h2yge"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
 atlas = ExtResource("2_0xm2m")
@@ -24,16 +23,12 @@ animations = [{
 
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource("1_ig7tw")
+speed = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_1bvp3")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-
-[node name="Node2D" type="Node2D" parent="Player"]
-script = ExtResource("3_h2yge")
-doors = [null, null, null, null]
-doorLimit = 4
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -45,9 +40,5 @@ texture = ExtResource("2_0xm2m")
 region_enabled = true
 region_rect = Rect2(-73068.2, -33350.4, 112152, 56173.1)
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
+[node name="Enemy" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(100, 0)
-speed = 100
-health = 100
-damage = 10
-player = NodePath("../Player")
