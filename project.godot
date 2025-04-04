@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Door survivers"
+run/main_scene="uid://bp3bhe2kx3roa"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

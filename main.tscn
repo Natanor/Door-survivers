@@ -1,3 +1,39 @@
-[gd_scene format=3 uid="uid://bp3bhe2kx3roa"]
+[gd_scene load_steps=5 format=3 uid="uid://bp3bhe2kx3roa"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" uid="uid://cfag37j8bc0lg" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_0xm2m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
+atlas = ExtResource("2_0xm2m")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1bvp3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2yge")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("1_ig7tw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_1bvp3")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+texture = ExtResource("2_0xm2m")
+region_enabled = true
+region_rect = Rect2(-73068.2, -33350.4, 112152, 56173.1)
