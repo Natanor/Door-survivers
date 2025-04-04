@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bp3bhe2kx3roa"]
+[gd_scene load_steps=6 format=3 uid="uid://bp3bhe2kx3roa"]
 
-[ext_resource type="Script" uid="uid://cfag37j8bc0lg" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://boxaw52pv20nv" path="res://player.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://drgyodt617ymr" path="res://Weapon Holder.gd" id="3_h2yge"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
 atlas = ExtResource("2_0xm2m")
@@ -27,6 +28,11 @@ script = ExtResource("1_ig7tw")
 sprite_frames = SubResource("SpriteFrames_1bvp3")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Node2D" type="Node2D" parent="Player"]
+script = ExtResource("3_h2yge")
+doors = [null, null, null, null]
+doorLimit = 4
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
