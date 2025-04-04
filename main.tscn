@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" path="res://player.tscn" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_0xm2m"]
-
 [ext_resource type="Script" uid="uid://drgyodt617ymr" path="res://Weapon Holder.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://vuj7bxf3dior" path="res://door.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cotxnpd3nnoq1" path="res://bullet.tscn" id="6_7mycd"]
@@ -39,6 +38,13 @@ doorLimit = 4
 [node name="Bullet Holder" type="Node2D" parent="Player"]
 
 [node name="Bullet" parent="Player/Bullet Holder" instance=ExtResource("6_7mycd")]
+velocity = 100
+baseDamage = 100
+sizeByLevel = [null]
+
+[node name="Area2D" type="Area2D" parent="Player/Bullet Holder/Bullet"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Bullet Holder/Bullet/Area2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
