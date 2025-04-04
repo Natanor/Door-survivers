@@ -1,9 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bp3bhe2kx3roa"]
 
-[ext_resource type="PackedScene" uid="uid://4lhq6jwnxvw1" path="res://player.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_0xm2m"]
-[ext_resource type="Script" path="res://Weapon Holder.gd" id="3_h2yge"]
-[ext_resource type="Script" path="res://door.gd" id="5_lquwl"]
+
+[ext_resource type="Script" uid="uid://drgyodt617ymr" path="res://Weapon Holder.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://vuj7bxf3dior" path="res://door.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cotxnpd3nnoq1" path="res://bullet.tscn" id="6_7mycd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
@@ -35,6 +36,10 @@ script = ExtResource("3_h2yge")
 doors = [null, null, null, null]
 doorLimit = 4
 
+[node name="Bullet Holder" type="Node2D" parent="Player"]
+
+[node name="Bullet" parent="Player/Bullet Holder" instance=ExtResource("6_7mycd")]
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -45,11 +50,9 @@ texture = ExtResource("2_0xm2m")
 region_enabled = true
 region_rect = Rect2(-73068.2, -33350.4, 112152, 56173.1)
 
-[node name="Door" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+[node name="Weapon" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("5_lquwl")
 player = NodePath("../Player")
 bullet = ExtResource("6_7mycd")
-rateByLevel = [1, 2, 3, 4, 5]
-sizeByLevel = [1.0, 1.3, 1.6, 1.9, 2.2]
 
-[node name="Bullet" parent="." instance=ExtResource("6_7mycd")]
+[node name="EnemyHolder" type="Node2D" parent="."]
