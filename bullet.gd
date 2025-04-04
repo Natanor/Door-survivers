@@ -1,9 +1,10 @@
 class_name Bullet
 extends Node2D
 
-@export var velocity : int = 200
+@export var velocity : int = 2000
 var baseDamage : int = 0
 var level : int = 0
+var direction = Vector2(1,0)
 
 @export var sizeByLevel = Array([], TYPE_INT, "int", null)
 var target: Enemy = null
@@ -38,7 +39,8 @@ func find_target():
 	return
 
 func follow_target(delta):
-	var direction = -(position - target.position).normalized()
+	if is_instance_valid(target):
+		direction = -(position - target.position).normalized()
 	position = position + (direction * velocity * delta)
 	rotation = direction.angle()
 	return

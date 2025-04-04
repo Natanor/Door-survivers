@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bp3bhe2kx3roa"]
+[gd_scene load_steps=6 format=3 uid="uid://bp3bhe2kx3roa"]
 
 [ext_resource type="PackedScene" uid="uid://4lhq6jwnxvw1" path="res://player.tscn" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://drgyodt617ymr" path="res://Weapon Holder.gd" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://27uuhajarey3" path="res://game_manager.gd" id="5_7mycd"]
-[ext_resource type="Script" uid="uid://vuj7bxf3dior" path="res://door.gd" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://cotxnpd3nnoq1" path="res://bullet.tscn" id="6_7mycd"]
-[ext_resource type="Script" uid="uid://c1fwxs74rnpmj" path="res://enemy_spawner.gd" id="6_272bh"]
+[ext_resource type="Script" path="res://Weapon Holder.gd" id="3_h2yge"]
+[ext_resource type="Script" path="res://game_manager.gd" id="5_7mycd"]
+[ext_resource type="Script" path="res://enemy_spawner.gd" id="6_272bh"]
 
 [node name="Main" type="Node2D"]
 
@@ -21,11 +19,6 @@ texture_repeat = 2
 texture = ExtResource("2_0xm2m")
 region_enabled = true
 region_rect = Rect2(-73068.2, -33350.4, 112152, 56173.1)
-
-[node name="Weapon" type="Node2D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("5_lquwl")
-player = NodePath("../Player")
-bullet = ExtResource("6_7mycd")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("5_7mycd")

@@ -1,8 +1,8 @@
 class_name Weapon
 extends Node
 
-var spawnRateInFrames = 100
-var time_since_last_trigger = 100
+var spawnRateInFrames = 3
+var time_since_last_trigger = 1
 
 # Initialization
 @onready var gameManager : GameManager = get_node('/root/Main/GameManager')

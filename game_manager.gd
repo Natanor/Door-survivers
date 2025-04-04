@@ -5,7 +5,6 @@ extends Node
 @onready var player: Player = get_node('/root/Main/Player')
 
 func _ready() -> void:
-	print("AAAA")
 	$"Weapon Holder"._addWeapon(Weapon.new())
 
 func add_enemy(enemy: Enemy):

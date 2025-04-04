@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://4lhq6jwnxvw1"]
 
-[ext_resource type="Script" uid="uid://boxaw52pv20nv" path="res://player.gd" id="1_i3pqv"]
+[ext_resource type="Script" path="res://player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_hqtel"]
-[ext_resource type="Script" uid="uid://drgyodt617ymr" path="res://Weapon Holder.gd" id="3_sweqy"]
+[ext_resource type="Script" path="res://Weapon Holder.gd" id="3_sweqy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
 atlas = ExtResource("2_hqtel")
