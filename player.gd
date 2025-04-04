@@ -20,3 +20,8 @@ func _process(delta):
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.get_parent().has_method("hit_by_player"):
+		area.get_parent().hit_by_player(self);

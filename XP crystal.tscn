@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://rrotustjye0f"]
+
+[ext_resource type="Script" uid="uid://cr7jrpfp1cx63" path="res://xp_crystal.gd" id="1_8ghkt"]
+[ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="1_j4m8d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ghkt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j4m8d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ghkt"]
+size = Vector2(123, 124)
+
+[node name="XpCrystal" type="Node2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_8ghkt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8ghkt")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8ghkt")
