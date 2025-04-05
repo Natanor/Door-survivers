@@ -1,7 +1,7 @@
 class_name Weapon
 extends Node
 
-var spawnRateInFrames = 3
+var spawnRateInFrames = 100
 var time_since_last_trigger = 1
 
 # Initialization

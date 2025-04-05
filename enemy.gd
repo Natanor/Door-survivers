@@ -7,25 +7,13 @@ extends Node2D
 @export var xp = 10
 @export var player: Node2D
 @export var DAMAGE_COOLDOWN_SECONDS = 0.5
+@export var anti_collision_strength = 75
 
 var damage_cooldown = 0
 
 # Initialization
 @onready var gameManager : GameManager = get_node('/root/Main/GameManager')
 const my_scene: PackedScene = preload("res://enemy.tscn")
-
-
-func _process(delta):
-	var velocity = (player.position - position).normalized()
-	rotation = velocity.angle()
-
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-
-		position += velocity * delta
-		$AnimatedSprite2D.play()
-	else:
-		$AnimatedSprite2D.stop()
 
 func take_damage(amount):
 	print("OUCH")
@@ -43,8 +31,26 @@ func hit_by_player():
 		damage_cooldown = DAMAGE_COOLDOWN_SECONDS * 60
 	
 func _physics_process(delta: float) -> void:
+	var velocity = (player.position - position).normalized()
+	rotation = velocity.angle()
+
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * speed
+
+		position += velocity * delta
+		$AnimatedSprite2D.play()
+	else:
+		$AnimatedSprite2D.stop()
+	
 	if damage_cooldown > 0:
 		damage_cooldown -= 1
+	for area : Area2D in $Area2D.get_overlapping_areas():
+		var hit_object = area.get_parent()
+		if hit_object is Enemy and hit_object != self:
+			velocity = -(hit_object.position - position).normalized() * anti_collision_strength
+			position += velocity * delta
+		
+
 	
 static func new_enemy(player: Player, position: Vector2, enemyType: int) -> Enemy:
 	var new_enemy: Enemy = my_scene.instantiate()
