@@ -1,20 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cotxnpd3nnoq1"]
+[gd_scene load_steps=5 format=3 uid="uid://caxbxdjq5woto"]
 
-[ext_resource type="Script" uid="uid://txyweux7ijt7" path="res://bullet.gd" id="1_v7oki"]
-[ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_v8qja"]
+[ext_resource type="PackedScene" uid="uid://c4k1blh1w3ek2" path="res://Components/HitboxComponent.tscn" id="1_8rwfv"]
+[ext_resource type="Script" path="res://bullet.gd" id="1_q4jsh"]
+[ext_resource type="Texture2D" uid="uid://cek2rmn322lh8" path="res://icon.svg" id="2_rnq23"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t4vbm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xbrr"]
+size = Vector2(120, 120)
 
 [node name="Bullet" type="Node2D"]
-script = ExtResource("1_v7oki")
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_q4jsh")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitboxComponent" parent="." instance=ExtResource("1_8rwfv")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_t4vbm")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-7.15256e-06, -7.15256e-06)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_3xbrr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_v8qja")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+texture = ExtResource("2_rnq23")

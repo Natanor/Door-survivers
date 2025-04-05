@@ -2,7 +2,6 @@ class_name Enemy
 extends Node2D
 
 @export var speed = 100 # How fast the player will move (pixels/sec).
-@export var health = 100
 @export var damage = 10
 @export var xp = 10
 @export var player: Node2D
@@ -15,11 +14,9 @@ var damage_cooldown = 0
 @onready var gameManager : GameManager = get_node('/root/Main/GameManager')
 const my_scene: PackedScene = preload("res://enemy.tscn")
 
-func take_damage(amount):
-	print("OUCH")
-	health -= amount
-	if health < amount:
-		self.die()
+
+func _ready():
+	$HealthComponent.connect('died', die)
 
 func die():
 	gameManager.drop_xp(XPCrystal.drop_XP(self.player, xp, self.position))
@@ -50,7 +47,6 @@ func _physics_process(delta: float) -> void:
 			velocity = -(hit_object.position - position).normalized() * anti_collision_strength
 			position += velocity * delta
 		
-
 	
 static func new_enemy(player: Player, position: Vector2, enemyType: int) -> Enemy:
 	var new_enemy: Enemy = my_scene.instantiate()
@@ -58,7 +54,6 @@ static func new_enemy(player: Player, position: Vector2, enemyType: int) -> Enem
 	new_enemy.position = position
 
 	var params = EnemyType.getEnemyInfo(enemyType)
-	new_enemy.health = params.health
 	new_enemy.speed = params.speed
 	new_enemy.xp = params.xp
 	return new_enemy

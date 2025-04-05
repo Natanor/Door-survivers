@@ -1,7 +1,7 @@
 class_name Bullet
 extends Node2D
 
-@export var velocity : int = 2000
+@export var velocity : int = 200
 var baseDamage : int = 0
 var level : int = 0
 var direction = Vector2(1,0)
@@ -17,7 +17,11 @@ const bullet_scene: PackedScene = preload("res://bullet.tscn")
 	
 func _ready() -> void:
 	position = player.position
+	$HitboxComponent.hit.connect(hit)
 	find_target()
+
+func hit(_target):
+	self.queue_free()
 
 func _process(delta):
 	if !target:
@@ -46,11 +50,6 @@ func follow_target(delta):
 	return
 
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	var hit_area = area.get_parent()
-	if hit_area is Enemy:
-		(hit_area as Enemy).take_damage(baseDamage)
-		self.queue_free()
 
 static func create(power: int) -> Bullet:
 	var bullet: Bullet = bullet_scene.instantiate()
